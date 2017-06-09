@@ -1,12 +1,9 @@
-Executar os algoritmos:
+Executar os algoritmos e gerar gráficos:
 
   ```shell
   git clone https://github.com/lucasse18/sort-cmp.git
+  cd sort-cmp
   ./run.sh
-  ```
-
-Gerar gráficos entrada x tempo:
-  ```shell
   ./gnuplot.sh
   ```
 

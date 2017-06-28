@@ -114,9 +114,8 @@ static void inline preenche_vetor_double(double * v, int n, double inicial,
 {
   int i;
   for(i=0;i<n;i++)
-    v[i]= inicial + sinal*i*delta;
+    v[i]= (inicial + sinal*i*delta)/(double)n;
 }
-
 
 double * gera_vetor_double(int n, Modificador c, Ordem o, Percentual p,
                            double minimo, double maximo){
@@ -143,7 +142,7 @@ double * gera_vetor_double(int n, Modificador c, Ordem o, Percentual p,
       preenche_vetor_double(v, n, maximo, delta, -1);
       break;
     case ALEATORIO:
-      for(i=0; i<n; i++) v[i] = rand_double(minimo,maximo);
+      for(i=0; i<n; i++) v[i] = drand48();
       break;
     default: CONFIRME(false, "Ordem Inválida\n");
   }

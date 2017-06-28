@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
   check(int_out, "failed to open file 'data/input_int' for writing.");
 
   fprintf(stderr, "[INFO] writing integer data\n");
+
   // dados em ordem crescente
   for(size_t i = 1; i <= n; i++)
     fprintf(int_out, "%ld ", i);

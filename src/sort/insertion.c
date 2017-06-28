@@ -12,3 +12,16 @@ int insertion_sort(long *A, size_t size) {
   }
   return 0;
 }
+
+int insertion_sort_double(double *A, size_t size) {
+  for(size_t i = 1; i < size; i++) {
+    double key = A[i];
+    size_t j = i - 1;
+    while(j != (size_t)-1 && A[j] > key) {
+      A[j + 1] = A[j];
+      j--;
+    }
+    A[j+1] = key;
+  }
+  return 0;
+}

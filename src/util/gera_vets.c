@@ -1,8 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -36,7 +33,6 @@ int main(int argc, char *argv[]){
 
   int k = atoi(argv[1]);
   CONFIRME(2 < k && k < 21, "invalid input size. values must be in the range [3-20].");
-  int n = POT2(k);
 
   struct stat st = {0};
 
@@ -46,16 +42,24 @@ int main(int argc, char *argv[]){
 
   CONFIRME(chdir(diretorio) == 0, "Erro ao mudar de diretório");
 
-  int_out = fopen("input_int", "w");
-  float_out = fopen("input_float", "w");
+  char out_filename_int[64];
+  char out_filename_float[64];
+  for(int n = POT2(3), i = 0; n <= POT2(k); i++, n = POT2(3+i)) {
+    snprintf(out_filename_int,   64, "input_int_%d",   3 + i);
+    snprintf(out_filename_float, 64, "input_float_%d", 3 + i);
 
-  gera_e_salva_vet(n, TOTALMENTE,   CRESCENTE,   0);
-  gera_e_salva_vet(n, TOTALMENTE,   DECRESCENTE, 0);
-  gera_e_salva_vet(n, TOTALMENTE,   ALEATORIO,   0);
-  gera_e_salva_vet(n, PARCIALMENTE, CRESCENTE,  10);
+    int_out   = fopen(out_filename_int,   "w");
+    float_out = fopen(out_filename_float, "w");
 
-  fclose(int_out);
-  fclose(float_out);
+    srand48(0);
+    gera_e_salva_vet(n, TOTALMENTE, CRESCENTE, 0);
+    gera_e_salva_vet(n, TOTALMENTE, DECRESCENTE, 0);
+    gera_e_salva_vet(n, TOTALMENTE, ALEATORIO, 0);
+    gera_e_salva_vet(n, PARCIALMENTE, CRESCENTE, 10);
+
+    fclose(int_out);
+    fclose(float_out);
+  }
 
   return 0;
 }

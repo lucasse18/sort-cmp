@@ -31,21 +31,21 @@ plot() {
 
   INPUT="'./data/out_${1}_${2}.csv'"
 
-# case ${1} in
-#   1) TITLE="Insertion" ;;
-#   2) TITLE="Merge"     ;;
-#   3) TITLE="Heap"      ;;
-#   4) TITLE="Quick"     ;;
-#   5) TITLE="Counting"  ;;
-#   6) TITLE="Radix"     ;;
-#   7) TITLE="Bucket"    ;;
-# esac
+  case ${1} in
+    1) TITLE="Insertion" ;;
+    2) TITLE="Merge"     ;;
+    3) TITLE="Heap"      ;;
+    4) TITLE="Quick"     ;;
+    5) TITLE="Counting"  ;;
+    6) TITLE="Radix"     ;;
+    7) TITLE="Bucket"    ;;
+  esac
 
   case ${2} in
-    asc)  COLOR="#268bd2";TITLE="Crescente"      ;; #TITLE+=" - Crescente"      ;;
-    desc) COLOR="#dc322f";TITLE="Decrescente"    ;; #TITLE+=" - Decrescente"    ;;
-    rand) COLOR="#b58900";TITLE="Aleatório"      ;; #TITLE+=" - Aleatório"      ;;
-    part) COLOR="#859900";TITLE="10%% Crescente" ;; #TITLE+=" - 10%% Crescente" ;;
+    asc)  COLOR="#268bd2";TITLE+=" - Crescente"      ;; #TITLE="Crescente"      ;;
+    desc) COLOR="#dc322f";TITLE+=" - Decrescente"    ;; #TITLE="Decrescente"    ;;
+    rand) COLOR="#b58900";TITLE+=" - Aleatório"      ;; #TITLE="Aleatório"      ;;
+    part) COLOR="#859900";TITLE+=" - 10%% Crescente" ;; #TITLE="10%% Crescente" ;;
   esac
 
   gnuplot << EndOfFile

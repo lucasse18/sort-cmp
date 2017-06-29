@@ -2,17 +2,14 @@
 trap exit ERR
 
 
-# argumentos
-# $1 = seed (opcional)
-#      usada somente quando os dados de entrada não estão presentes
-SEED=${1}
-
-# parametros
+# parâmetros
+# ----------
 K_MAX="16"
 K_MIN="3"
 SAMPLES="25"
 
 # funcoes
+# -------
 die() {
   echo -e "$@"; exit 1
 }
@@ -44,7 +41,7 @@ type make > /dev/null 2>&1 || die "GNU make nao foi encontrado no PATH."
 
 make bin/sort
 
-[ -s data/input_int_3 ]    || make bin/gen_input && bin/gen_input ${K_MAX} ${SEED}
+[ -s data/input_int_3 ]    || make bin/gen_input && bin/gen_input ${K_MAX}
 
 for ((l = 1; l <= 6; l++)); do
   INPUT="./data/input_int"

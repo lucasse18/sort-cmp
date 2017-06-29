@@ -2,6 +2,9 @@
 
 #include <sort/counting.h>
 
+// modified version of code extracted from
+// http://rosettacode.org/wiki/Sorting_algorithms/Counting_sort#C
+
 int counting_sort(long *A, size_t size) {
   long min = 1, max = size;
   long range = max - min + 1;

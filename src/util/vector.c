@@ -2,7 +2,7 @@
 #include <string.h> //memcpy
 #include <util/vector.h>
 
-#define VECTOR_STARTING_SIZE 16
+#define VECTOR_STARTING_SIZE 8
 
 struct UTIL_VECTOR {
   size_t max_memb; /**< Quantidade máxima de membros armazenáveis no vetor */

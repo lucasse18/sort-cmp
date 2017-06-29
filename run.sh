@@ -10,7 +10,7 @@ SEED=${1}
 # parametros
 K_MAX="16"
 K_MIN="3"
-SAMPLES="10"
+SAMPLES="25"
 
 # funcoes
 die() {
@@ -22,13 +22,14 @@ run() {
   # $1 = codigo do algoritmo [1-7]
 
   # inicializa arquivos de saida, apagando runs anteriores para o mesmo algoritmo
-  for order in {asc, desc, rand, part}; do
+  for order in asc desc rand part; do
     echo "# input_size,sorting_time(ns)" > ./data/out_${1}_${order}.csv
   done
 
   # executa o programa para cada k
   echo "executando algoritmo ${1}..."
   for ((i = ${K_MIN}; i <= ${K_MAX}; i++)); do
+    #sudo nice -n -10 ./bin/sort -a ${1} -k ${i} -s ${SAMPLES} "${INPUT}_${i}"
     ./bin/sort -a ${1} -k ${i} -s ${SAMPLES} "${INPUT}_${i}"
 
     # informa progresso

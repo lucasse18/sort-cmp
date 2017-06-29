@@ -1,5 +1,9 @@
-#include <sort/radix.h>
 #include <limits.h>
+
+#include <sort/radix.h>
+
+// modified version of code extracted from
+// http://rosettacode.org/wiki/Sorting_algorithms/Radix_sort#C
 
 static void swap(long unsigned *a, long unsigned *b) {
   long unsigned tmp = *a;

@@ -24,14 +24,6 @@ int read_float(void *n);
 int compare_integer(void *a, void *b);
 int compare_float(void *a, void *b);
 
-/*
-void print_vec(double *A, size_t size) {
-  for(size_t i = 0; i < size; i++)
-    printf("%.4f ", A[i]);
-  printf("\n");
-}
-*/
-
 // if NDEBUG hasn't been defined, check if the output is in ascending order after sorting
 #ifndef NDEBUG
 #define assert_asc_order(A, size, cmp) ASSERT_ASC_ORDER((A), (size), (cmp))
@@ -135,7 +127,7 @@ int main(int argc, char *argv[]) {
 
   // run for each of the four input lines (ascending, descending, random, partially sorted)
   for(size_t i = 0; i < 4; i++) {
-    strncat(out_filename, sufixes[i], 20);
+    strncat(out_filename, sufixes[i], strlen(sufixes[1]));
     check(out = fopen(out_filename, "a"), "could not open output file for writing");
     strncpy(out_filename, buff, 20);
 
@@ -148,6 +140,7 @@ int main(int argc, char *argv[]) {
 
     // run algorithm 'samples' times
     for(size_t j = 0; j < samples; j++) {
+
       struct timespec start, stop;
       check(clock_gettime(CLOCK_THREAD_CPUTIME_ID, &start) == 0, "function 'clock_gettime' returned error.");
       switch (alg) {
@@ -176,21 +169,23 @@ int main(int argc, char *argv[]) {
           abort();
       }
       check(clock_gettime(CLOCK_THREAD_CPUTIME_ID, &stop) == 0, "function 'clock_gettime' returned error.");
-      // FIXME using a slow enough algorithm and/or a big enough input array may overflow 'cpu_time'
-      cpu_time = (1000000000UL * (stop.tv_sec - start.tv_sec) + stop.tv_nsec - start.tv_nsec);
+      // FIXME using a slow enough algorithm and/or a big enough input array and/or a big enough
+      // sample size may overflow 'cpu_time'
+      cpu_time += (1000000000UL * (stop.tv_sec - start.tv_sec) + stop.tv_nsec - start.tv_nsec);
 
       // check that the output has been sorted correctly
       assert_asc_order(A, n, compare_fn);
 
-      // input_size,sorting_time(ns)
-      fprintf(out, "%zd,%lld,%zd,%zd\n", n, cpu_time, i, j);
-
       // assumes sizeof(long) == sizeof(double)
       // copy the vector back from the temporary buffer
       memcpy(A, B, n * sizeof(long));
-    }
+    } // end for samples
+
+    // input_size,mean_sorting_time(ns)
+    fprintf(out, "%zd,%lld\n", n, cpu_time/samples);
+
     fclose(out);
-  }
+  } // end for input orders
 
   free(A);
   free(B);

@@ -1,6 +1,6 @@
 SHELL   = /bin/bash
 CC      = gcc
-CFLAGS  = -std=gnu11 -O2
+CFLAGS  = -std=gnu11 -O2 -Wall
 
 INCLUDE  = include
 OUTDIR   = bin

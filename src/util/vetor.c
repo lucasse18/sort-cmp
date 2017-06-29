@@ -47,7 +47,6 @@ int rand_int(int min, int max){
   return x / tam_balde + min;
 }
 
-
 static void inline preenche_vetor_int(int * v, int n, int k, int q, int r, int incr){
   int i, j;
   i=0;
@@ -64,7 +63,6 @@ static void inline preenche_vetor_int(int * v, int n, int k, int q, int r, int i
     k = k + incr;
   }
 }
-
 
 int * gera_vetor_int(int n, Modificador c, Ordem o, Percentual p,
                      int minimo, int maximo){
@@ -107,7 +105,6 @@ int * gera_vetor_int(int n, Modificador c, Ordem o, Percentual p,
 
   return v;
 }
-
 
 static void inline preenche_vetor_double(double * v, int n, double inicial,
                                          double delta, double sinal)
@@ -243,7 +240,6 @@ bool esta_ordenado_int(Ordem o, int * v, int n){
   }
   return true;
 }
-
 
 bool esta_ordenado_double(Ordem o, double * v, int n){
   int i;

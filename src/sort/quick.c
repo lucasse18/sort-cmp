@@ -4,7 +4,7 @@ size_t partition(long *A, size_t size) {
   //long pivot = A[size >> 1]; // pivot = A[floor(size/2)]
 
   // by choosing the pivot as the last member, we'll get worst case time complexity, O(n**2), for
-  // already sorted inputs (asc or desc).
+  // already sorted inputs (ascending or descending order).
   long pivot = A[size - 1];
 
   size_t i = 0;
@@ -22,7 +22,8 @@ size_t partition(long *A, size_t size) {
   return i;
 }
 
-// works for sizes up to 2**17 but segfaults with stack overflow for sizes of 2**18 and greater
+// tests showed it to work for 'size' up to 2**17. with a 'size' of 2**18 and greater a stack
+// overflow occurs and the program is killed with SIGSEGV
 void quick_sort(long *A, size_t size) {
   if(size < 2)
     return;

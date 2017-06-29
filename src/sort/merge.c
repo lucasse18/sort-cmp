@@ -1,4 +1,5 @@
 #include <stdlib.h>
+
 #include <sort/merge.h>
 
 void merge(long *A, size_t size, size_t q) {
